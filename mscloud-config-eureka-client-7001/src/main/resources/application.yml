@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: mscloud-config-eureka-client       # 服务名称

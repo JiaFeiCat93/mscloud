@@ -1,0 +1,12 @@
+server:
+  port: 3344                                                    # 端口号
+
+
+spring:
+  application:
+    name: mscloud-config                                        # 服务名称
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@github.com:JiaFeiCat93/mscloud-config.git    # GitHub上面的git仓库名字

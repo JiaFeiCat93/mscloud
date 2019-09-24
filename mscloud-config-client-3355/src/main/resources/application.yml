@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: mscloud-config-client       # 服务名称

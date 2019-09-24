@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.9.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.qetch.springcloud</groupId>
+    <artifactId>mscloud</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>mscloud</name>
+    <description>Demo project for Spring Boot</description>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <junit.version>4.12</junit.version>
+        <log4j.version>1.2.17</log4j.version>
+        <logback-core.version>1.2.3</logback-core.version>
+        <mysql.version>5.1.45</mysql.version>
+        <druid.version>1.1.16</druid.version>
+        <lombok.version>1.16.18</lombok.version>
+
+        <!--
+            使用jetty作为web容器，必须注意：
+            配置jetty版本!!!很重要!!!由于默认引入的是jetty9.4 jdk1.7不支持 必须降低jetty版本
+        -->
+        <jetty.version>9.2.4.v20141103</jetty.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--spring-cloud-dependencies-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Dalston.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--spring-boot-dependencies-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>1.5.9.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 单元测试 -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- 日志处理 -->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+
+            <!--logback-core-->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback-core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <!-- MySql -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!-- 连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!--mybatis-spring-boot-starter-->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>1.3.2</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <finalName>mscloud</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimiter>$</delimiter>
+                    </delimiters>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <modules>
+        <module>mscloud-api</module>
+        <module>mscloud-provider-dept-8001</module>
+        <module>mscloud-consumer-dept-80</module>
+        <module>mscloud-eureka-7001</module>
+    </modules>
+
+</project>
